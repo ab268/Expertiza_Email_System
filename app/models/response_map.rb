@@ -46,8 +46,8 @@ class ResponseMap < ActiveRecord::Base
     elsif self.response != nil
       self.response.delete
     end    
-    self.destroy
-  end    
+    self.destro
+  end
   
   def show_review()
     return nil

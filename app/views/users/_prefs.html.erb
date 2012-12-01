@@ -16,6 +16,18 @@
      <td><label for="user_email_on_review_of_review">When someone else reviews one of my reviews (<strong>metareviews</strong> my work)</label></td>
      <td><%= check_box 'user', 'email_on_review_of_review', {}, true, false %></td>
    </tr>
+   <tr>
+     <td><label for="user_email_on_waitlist_clear">When a topic I have been <strong>waitlisted</strong> for is assigned to me</label></td>
+     <td><%= check_box 'user', 'email_on_waitlist_clear', {}, true, false %></td>
+   </tr>
+   <tr>
+     <td><label for="user_email_on_teammate_review">When one of my teammates gives me a <strong>feedback</strong></label></td>
+     <td><%= check_box 'user', 'email_on_teammate_review', {},  true, false  %></td>
+   </tr>
+   <tr>
+     <td><label for="user_email_on_feedback">When author gives <strong>feedback</strong> on my review of his work</label></td>
+     <td><%= check_box 'user', 'email_on_feedback', {},  true, false  %></td>
+   </tr>
    <tr></tr>
    <tr>
      <th align=left>Privacy</th>

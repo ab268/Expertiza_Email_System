@@ -62,7 +62,7 @@ class CourseParticipant < Participant
         tcsv.push(user.parent.name)
       end
       if (options["email_options"] == "true")
-        tcsv.push(user.email_on_submission, user.email_on_review, user.email_on_review_of_review)
+        tcsv.push(user.email_on_submission, user.email_on_review, user.email_on_review_of_review, user.email_on_teammate_review, user.email_on_feedback, user.email_on_waitlist_clear)
       end
       if (options["handle"] == "true")
         tcsv.push(part.handle)

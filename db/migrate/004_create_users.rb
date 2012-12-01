@@ -13,6 +13,9 @@ class CreateUsers < ActiveRecord::Migration
       t.column "email_on_review", :boolean
       t.column "email_on_submission", :boolean
       t.column "email_on_review_of_review", :boolean
+      t.column "email_on_feedback", :boolean
+      t.column "email_on_teammate_review", :boolean
+      t.column "email_on_waitlist_clear", :boolean
       t.column "is_new_user", :boolean, :default => 1
       t.column "master_permission_granted", :boolean
 

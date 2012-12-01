@@ -189,6 +189,9 @@ class User < ActiveRecord::Base
     @email_on_review = true
     @email_on_submission = true
     @email_on_review_of_review = true
+    @email_on_teammate_review = true
+    @email_on_feedback = true
+    @email_on_waitlist_clear = true
   end
 
   def self.export(csv, parent_id, options)

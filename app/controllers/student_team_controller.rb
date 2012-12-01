@@ -1,6 +1,41 @@
 class StudentTeamController < ApplicationController
   auto_complete_for :user, :name
-   
+  def email(emailId,type,firstName,assignment,partialName)
+
+    puts "We entered to email"
+    #@emailId,@type,@firstName = emailId,type,firstName
+
+    Mailer.deliver_message(
+        {:recipients => emailId,
+         :subject => "Your waitlist is cleared for #{assignment} ",
+         :body => {
+             :obj_name => assignment,
+             :type => type,
+             # :location => get_review_number(mapping).to_s,
+             :first_name => firstName,
+             :partial_name => "#{partialName}"
+         }
+        }
+    )
+
+
+  end
+
+  def emailOnWaitlistClear(revieweeId)
+    puts "in Waitlist clear"
+    participant = Participant.find_by_id(revieweeId).user_id
+    asstId = Participant.find_by_id(revieweeId).parent_id
+    user=User.find_by_id(participant)
+    assignment=Assignment.find_by_id(asstId).name
+    partialName="email_on_waitlist_clear"
+    puts " gadbad = #{user.email_on_waitlist_clear}"
+    if (user.email_on_waitlist_clear)
+      puts"inside if?"
+      email(user.email,"Waitlist Clear ",ApplicationHelper::get_user_first_name(user),assignment,partialName)
+    end
+
+  end
+
   def view
     @student = AssignmentParticipant.find(params[:id])
     return unless current_user_id?(@student.user_id)
@@ -112,10 +147,18 @@ class StudentTeamController < ApplicationController
                 user_id = waitlisted_team_user.user_id
                 if !user_id.nil?
                   participant = Participant.find_by_user_id(user_id)
-                  participant.update_topic_id(nil)    
+                  participant.update_topic_id(nil)
+
                 end
+
              end
-            end      
+
+              waitlisted_team_user.each do |teamMember|
+                  emailOnWaitlistClear(teamMember)
+              end
+
+            end
+
           end
           #signup.destroy
         }

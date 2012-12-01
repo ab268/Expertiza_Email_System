@@ -15,6 +15,9 @@ class ModifyUsers < ActiveRecord::Migration
     add_column :users, :email_on_review, :boolean
     add_column :users, :email_on_submission, :boolean
     add_column :users, :email_on_review_of_review, :boolean
+    add_column :users, :email_on_feedback, :boolean
+    add_column :users, :email_on_waitlist_clear, :boolean
+    add_column :users, :email_on_teammate_review, :boolean
 
     execute "alter table users 
              add constraint fk_institutions_users
@@ -31,5 +34,8 @@ class ModifyUsers < ActiveRecord::Migration
     remove_column :users, :email_on_review
     remove_column :users, :email_on_submission
     remove_column :users, :email_on_review_of_review
+    remove_column :users, :email_on_teammate_review
+    remove_column :users, :email_on_feedback
+    remove_column :users, :email_on_waitlist_clear
   end
 end

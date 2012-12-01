@@ -18,6 +18,7 @@ Rails::Initializer.run do |config|
     raise 'dot executable missing - install graphviz' if %x(which dot).to_s.empty?
   end
 
+
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -43,7 +44,16 @@ Rails::Initializer.run do |config|
   }
 
   config.action_controller.session_store = :active_record_store
-  
+
+
+  if RAILS_ENV == 'development'
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+        :address => "smtp.ncsu.edu",
+        :port => 25,
+        :domain => "localhost"
+    }
+  end
   if RAILS_ENV == 'production'
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
@@ -60,4 +70,5 @@ Rails::Initializer.run do |config|
       :domain => "localhost"
     }
   end
+
 end

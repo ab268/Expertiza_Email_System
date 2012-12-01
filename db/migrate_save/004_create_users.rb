@@ -12,7 +12,9 @@ class CreateUsers < ActiveRecord::Migration
     add_column :email_on_review, :boolean
     add_column :email_on_submission, :boolean
     add_column :email_on_review_of_review, :boolean
-
+    add_column :email_on_feedback, :boolean
+    add_column :email_on_teammate_review, :boolean
+    add_column :email_on_waitlist_clear, :boolean
     user = User.create(:username => "testuser1", :password=> User.hash_password("1wolfpack"), :role_id => "3")
     user.save
     user = User.create(:username => "testuser2", :password=> User.hash_password("2wolfpack"),:role_id => "3")

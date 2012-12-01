@@ -33,6 +33,9 @@ View user - enter exact login: <%= text_field_with_auto_complete :user, :name, {
     <td><%= User.yesorno(user.email_on_review) %></td>
     <td><%= User.yesorno(user.email_on_submission) %></td>
     <td><%= User.yesorno(user.email_on_review_of_review) %></td>
+    <td><%= User.yesorno(user.email_on_feedback) %></td>
+    <td><%= User.yesorno(user.email_on_teammate_review) %></td>
+    <td><%= User.yesorno(user.email_on_waitlist_clear) %></td>
     <td><%= User.yesorno(user.leaderboard_privacy) %></td>
   </tr>
 <% end -%>

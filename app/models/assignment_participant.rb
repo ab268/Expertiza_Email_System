@@ -243,6 +243,9 @@ class AssignmentParticipant < Participant
             user.email_on_submission,
             user.email_on_review,
             user.email_on_review_of_review,
+            user.email_on_waitlist_clear,
+            user.email_on_feedback,
+            user.email_on_teammate_review,
             part.handle
           ]
       } 

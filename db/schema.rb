@@ -239,9 +239,9 @@ ActiveRecord::Schema.define(:version => 20111217162506) do
   add_index "question_advices", ["question_id"], :name => "fk_question_question_advices"
 
   create_table "question_types", :force => true do |t|
-    t.string  "q_type",      :default => "", :null => false
+    t.string  "q_type",                     :null => false
     t.string  "parameters"
-    t.integer "question_id", :default => 1,  :null => false
+    t.integer "question_id", :default => 1, :null => false
   end
 
   add_index "question_types", ["question_id"], :name => "fk_question_type_question"
@@ -257,8 +257,8 @@ ActiveRecord::Schema.define(:version => 20111217162506) do
     t.integer  "default_num_choices"
     t.string   "type"
     t.string   "display_type"
-    t.text     "instruction_loc"
     t.string   "section"
+    t.text     "instruction_loc"
   end
 
   create_table "questions", :force => true do |t|
@@ -526,6 +526,9 @@ ActiveRecord::Schema.define(:version => 20111217162506) do
     t.boolean "leaderboard_privacy",                      :default => false
     t.text    "digital_certificate"
     t.string  "persistence_token"
+    t.boolean "email_on_feedback"
+    t.boolean "email_on_teammate_review"
+    t.boolean "email_on_waitlist_clear"
   end
 
   add_index "users", ["role_id"], :name => "fk_user_role_id"

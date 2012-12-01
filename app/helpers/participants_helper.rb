@@ -23,6 +23,9 @@ module ParticipantsHelper
     attributes["email_on_submission"] = 1
     attributes["email_on_review"] = 1
     attributes["email_on_review_of_review"] = 1
+    attributes["email_on_teammate_review"] = 1
+    attributes["email_on_feedback"] = 1
+    attributes["email_on_waitlist_clear"] = 1
     attributes
   end
   

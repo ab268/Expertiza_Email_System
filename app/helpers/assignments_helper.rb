@@ -1,7 +1,7 @@
 module AssignmentsHelper
   require 'date'
   COMPLETE = "Finished"
-  WAITLIST = "Waitlist open"
+  WAITLIST = "Waitlist open"#kaamacha
   
   def self.find_current_stage(signup_id)
     due_dates = SignupSheet.find(:all, 

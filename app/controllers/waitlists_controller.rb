@@ -44,7 +44,7 @@ class WaitlistsController < ApplicationController
     end
   end
 
-  def destroy
+  def destroy           #kaamacha?? jevha waitlist destroy hote tevha topic assign hun kato ka? kiwa waitlist destroyed on topic deletion
     Waitlist.find(params[:id]).destroy
     redirect_to :action => 'list'
   end

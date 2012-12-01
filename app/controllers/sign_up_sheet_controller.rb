@@ -9,6 +9,47 @@ class SignUpSheetController < ApplicationController
   verify :method => :post, :only => [:destroy, :create, :update],
          :redirect_to => {:action => :list}
 
+  def email(emailId,type,firstName,assignment,partialName)
+
+    puts " type = #{type} email = #{emailId} partialName "
+    puts "We entered to email"
+    #@emailId,@type,@firstName = emailId,type,firstName
+
+    Mailer.deliver_message(
+        {:recipients => emailId,
+         :subject => "Your waitlist is cleared for #{assignment} ",
+         :body => {
+             :obj_name => assignment,
+             :type => type,
+             # :location => get_review_number(mapping).to_s,
+             :first_name => firstName,
+             :partial_name => "#{partialName}"
+         }
+        }
+    )
+
+
+  end
+
+  def emailOnWaitlistClear(teamId)
+    puts "we are in email on waitlist clear"
+    @team_member = TeamsUser.find_all_by_team_id(teamId)
+    asstId = Team.find_by_id(teamId).parent_id
+    assignment=Assignment.find_by_id(asstId).name
+    partialName="email_on_waitlist_clear"
+    @team_member.each do |team_Member|
+      # get parameters for sending mail
+        user=User.find_by_id(team_Member.user_id)
+        puts "teammate name = #(user.name)"
+        puts " gadbad = #{user.email_on_waitlist_clear}"
+        if(user.email_on_waitlist_clear)
+          puts"inside if?"
+      email(user.email,"Waitlist Clear",ApplicationHelper::get_user_first_name(user),assignment,partialName)
+      end
+    end
+    end
+
+
   def add_signup_topics_staggered
     load_add_signup_topics(params[:id])
 
@@ -284,6 +325,11 @@ class SignUpSheetController < ApplicationController
             participant = Participant.find_by_user_id_and_parent_id(first_waitlisted_user.creator_id, assignment.id)
           end
           participant.update_topic_id(topic_id)
+
+          #participant.each do |userId|
+            emailOnWaitlistClear(first_waitlisted_user.creator_id)
+         # end
+          #Email Add here too
 
           SignUpTopic.cancel_all_waitlists(first_waitlisted_user.creator_id, assignment_id)
         end
