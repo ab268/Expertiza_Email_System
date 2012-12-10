@@ -252,7 +252,7 @@ class AssignmentParticipant < Participant
   end
   
   def self.get_export_fields(options)
-    fields = ["name","full name","email","role","parent","email on submission","email on review","email on metareview","handle"]
+    fields = ["name","full name","email","role","parent","email on submission","email on review","email on review of review","email on waitlist clear","email on feedback","email on teammate review","handle"]
     return fields            
   end
   

@@ -208,7 +208,7 @@ class User < ActiveRecord::Base
         tcsv.push(user.parent.name)
       end
       if (options["email_options"] == "true")
-        tcsv.push(user.email_on_submission, user.email_on_review, user.email_on_review_of_review)
+        tcsv.push(user.email_on_submission, user.email_on_review, user.email_on_review_of_review,user.email_on_feedback,user.email_on_teammate_review, user.email_on_waitlist_clear)
       end
       if (options["handle"] == "true")
         tcsv.push(user.handle)
@@ -229,7 +229,7 @@ class User < ActiveRecord::Base
       fields.push("parent")
     end
     if (options["email_options"] == "true")
-      fields.push("email on submission", "email on review", "email on metareview")
+      fields.push("email on submission", "email on review", "email on metareview","email on review of review", "email on waitlist clear", "email on feedback" )
     end
     if (options["handle"] == "true")
       fields.push("handle")

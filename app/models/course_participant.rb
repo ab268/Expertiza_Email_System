@@ -83,7 +83,7 @@ class CourseParticipant < Participant
       fields.push("parent")
     end
     if (options["email_options"] == "true")
-      fields.push("email on submission", "email on review", "email on metareview")
+      fields.push("email on submission", "email on review", "email on teammate review", "email on review of review", "email on feedback", "email on waitlist clear")
     end
     if (options["handle"] == "true")
       fields.push("handle")

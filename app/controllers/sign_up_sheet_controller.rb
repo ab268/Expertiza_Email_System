@@ -41,7 +41,6 @@ class SignUpSheetController < ApplicationController
       # get parameters for sending mail
         user=User.find_by_id(team_Member.user_id)
         puts "teammate name = #(user.name)"
-        puts " gadbad = #{user.email_on_waitlist_clear}"
         if(user.email_on_waitlist_clear)
           puts"inside if?"
       email(user.email,"Waitlist Clear",ApplicationHelper::get_user_first_name(user),assignment,partialName)
